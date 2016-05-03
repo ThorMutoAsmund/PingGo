@@ -1,0 +1,40 @@
+﻿<Window x:Class="PingGo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PingGo"
+        mc:Ignorable="d"
+        Title="PingGo" Height="427" Width="328.993">
+    <Grid>
+        <ListView x:Name="watchListView"  ItemsSource="{Binding}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Height" Value="30" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Status">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <!--<Image Source="{Binding Path=Validated, Converter={StaticResource imageConverter}}" />-->
+                                <Canvas Height="30" Width="30">
+                                    <Rectangle Fill="{Binding Path=Color}" Canvas.Left="5" Canvas.Top="5" Width="20" Height="20" />
+                                </Canvas>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=StatusText}"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Info..." Click="WatchInfo_OnClick"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+
+    </Grid>
+</Window>
